@@ -1,42 +1,20 @@
 //https://www.omdbapi.com/?i=tt3896198&apikey=d69e1a3c&s=dark
 
-async function main() {
-    const movie = await fetch("https://www.omdbapi.com/?i=tt3896198&apikey=d69e1a3c");
-    const movies = await movie.json();
-    const movieList = document.querySelector('.search-controls');
-    
-    movieList.innerHTML = movies.Search.map((film) => 
-     `<div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>
-    <div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>
-    <div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>
-    <div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>
-    <div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>
-    <div class="movie-card">
-      <img src="${film.poster}" alt="">
-      <h3>${film.title}</h3>
-      <p>${film.year}</p>
-    </div>`).join("");
-    
-}
 
-main();
+const loadingSpinner = document.getElementById("loadingSpinner");
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const movieResults = document.getElementById("movieResults");
+
+let currentMovies = []; // Store fetched movies
+
+searchBtn.addEventListener("click", searchMovies);
+
+searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") searchMovies();
+});
+
+sortSelect.addEventListener("change", () => {
+  displayMovies(currentMovies); 
+});
