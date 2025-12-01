@@ -55,9 +55,9 @@ function displayMovies(movies) {
     sortedMovies.sort((a, b) => Number(a.Year) - Number(b.Year));
   }
 
-  const firstFour = sortedMovies.slice(0, 4); 
+  const firstSix = sortedMovies.slice(0, 6); 
 
-  movieResults.innerHTML = firstFour
+  movieResults.innerHTML = firstSix
     .map(
       (movie) => `
     <div class="movie-card">
